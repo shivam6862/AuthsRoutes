@@ -1,0 +1,16 @@
+.App {
+  background-color: #0008ff;
+  margin: 0px;
+  padding: 0px;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 450px) {
+  .App {
+    width: auto;
+  }
+}

@@ -1,0 +1,62 @@
+.card {
+  min-width: 500px;
+  margin: auto;
+  margin-top: 4rem;
+  text-align: center;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+  padding: 2rem 1rem;
+  color: #000000;
+  background-color: #3b41ff;
+}
+.card h2 {
+  font-weight: 400;
+  font-size: 1.8rem;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+.form input {
+  border: none;
+  outline: none;
+  background: #a3b7ff;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid black;
+  width: 300px;
+  font-size: 1rem;
+  position: relative;
+}
+.form input:focus {
+  border-bottom: 2px solid rgb(255, 168, 168);
+}
+.form input::placeholder {
+  font-size: 1rem;
+}
+.submit-button {
+  all: unset;
+  padding: 0.5rem 1.25rem;
+  background-color: rgb(0, 0, 0);
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 550px) {
+  .card {
+    min-width: auto;
+    margin: auto;
+  }
+  .form input {
+    width: auto;
+  }
+  .form {
+    width: auto;
+  }
+}
