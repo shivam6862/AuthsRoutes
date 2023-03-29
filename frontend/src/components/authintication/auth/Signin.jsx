@@ -5,6 +5,8 @@ import { signin } from "../user/api-auth";
 import styles from "./Singnin.module.css";
 import { useNotification } from "../../store/useNotification";
 
+import { Link } from "react-router-dom";
+
 export default function Signin() {
   const location = useLocation();
   const [values, setValues] = useState({
@@ -91,6 +93,10 @@ export default function Signin() {
           SUBMIT
         </button>
       </div>
+
+      <Link to={`/reset`}>
+        <div className={styles.resetpassword}>Reset password</div>
+      </Link>
     </div>
   );
 }

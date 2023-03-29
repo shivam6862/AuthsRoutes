@@ -60,3 +60,9 @@
     width: auto;
   }
 }
+
+.resetpassword{
+  text-align: right;
+  color: #000000;
+  text-decoration: none;
+}

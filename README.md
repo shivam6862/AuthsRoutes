@@ -91,8 +91,6 @@ So as to run our project locally, you need to follow the steps below.
 
 AuthsRoute is an innovative web application that simplifies the process of authintication.<br/>
 
-<a href="https://github.com/shivam6862/"><img src="https://github.com/shivam6862/AuthsRoutes/blob/master/frontend/public/QuizApp.png" style="border-radius:12px"></a>
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Contributing

@@ -21,6 +21,14 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  resetToken: {
+    type: String,
+    default: "",
+  },
+  resetTokenExpiration: {
+    type: String,
+    default: "",
+  },
   upadated: Date,
   hashed_password: {
     type: String,
@@ -55,7 +63,7 @@ UserSchema.methods = {
     }
   },
   makeSalt: function () {
-    return Math.round(new Date().valueOf() * Math.random()) + "";
+    return "9060654631";
   },
 };
 UserSchema.path("hashed_password").validate(function (v) {

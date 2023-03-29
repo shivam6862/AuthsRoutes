@@ -7,6 +7,9 @@ import Pagenotfound from "./components/pageNotFound/Pagenotfound";
 import Signin from "./components/authintication/auth/Signin";
 import Signup from "./components/authintication/user/SignUp";
 
+import ResetPassword from "./components/authintication/user/ResetPassword";
+import NewPassword from "./components/authintication/user/NewPassword";
+
 const routes = [
   {
     path: "/",
@@ -24,6 +27,14 @@ const routes = [
     path: "/userprotected",
     private: true,
     Component: UserProtected,
+  },
+  {
+    path: "/reset",
+    Component: ResetPassword,
+  },
+  {
+    path: "/newpassword/:token",
+    Component: NewPassword,
   },
   {
     path: "*",
