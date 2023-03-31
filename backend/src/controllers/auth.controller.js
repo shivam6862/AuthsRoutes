@@ -27,9 +27,6 @@ const signin = async (req, res) => {
       config.jwtSecret
     );
 
-    res.cookie("t", token, {
-      expire: new Date() + 9999,
-    });
     return res.json({
       token,
       user: {
@@ -45,20 +42,14 @@ const signin = async (req, res) => {
     });
   }
 };
-const signout = (req, res) => {
-  res.clearCookie("t");
-  return res.status(200).json({
-    message: "signed out",
-  });
-};
 
-// validating JWT Token and setting user's ID in an 'auth' key to the request Object
-// protected routes will use requireSignin
+// validating JWT Token and setting user's ID in an 'auth' key to the request Object protected routes will use requireSignin
 const requireSignin = expressjwt({
   secret: config.jwtSecret,
   algorithms: ["HS256"],
   userProperty: "auth",
 });
+
 // to verify that the authenticated user is deleting or updating its own data only
 const hasAuthorization = (req, res, next) => {
   const authorized = req.profile && req.auth && req.profile._id == req.auth._id;
@@ -70,4 +61,4 @@ const hasAuthorization = (req, res, next) => {
   next();
 };
 
-module.exports = { signin, signout, requireSignin, hasAuthorization };
+module.exports = { signin, requireSignin, hasAuthorization };

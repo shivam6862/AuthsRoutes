@@ -63,7 +63,7 @@ UserSchema.methods = {
     }
   },
   makeSalt: function () {
-    return "9060654631";
+    return Math.round(new Date().valueOf() * Math.random()) + "";
   },
 };
 UserSchema.path("hashed_password").validate(function (v) {

@@ -29,15 +29,18 @@ const resetPassword = (req, res, next) => {
     User.findOne({ email: req.body.email })
       .then((user) => {
         if (!user) {
-          return res
-            .status(401)
-            .send({ error: "No account with that email is found!" });
+          return user;
         }
         user.resetToken = token;
         user.resetTokenExpiration = Date.now() + 3600000;
         return user.save();
       })
-      .then((result) => {
+      .then((user) => {
+        if (user == null) {
+          return res
+            .status(401)
+            .send({ error: "No account with that email is found!" });
+        }
         // transporter.sendMail({
         //   to: req.body.email,
         //   from: "shivam6862mau@gmail.com",
@@ -48,7 +51,7 @@ const resetPassword = (req, res, next) => {
         //   `,
         // });
         return res.status(400).send({
-          message: `Please check your mail ${req.body.email}!`,
+          message: `Please check your mail ${user.email}!`,
         });
       })
       .catch((err) => {
@@ -59,4 +62,4 @@ const resetPassword = (req, res, next) => {
   });
 };
 
-module.exports = resetPassword ;
+module.exports = resetPassword;

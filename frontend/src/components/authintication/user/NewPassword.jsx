@@ -11,6 +11,7 @@ import LoadingSpinner from "../../ui/LoadingSpinner";
 export default function NewPassword() {
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
+  const [userNotFound, setUserNotFound] = useState(false);
   const { token } = useParams();
   var {
     isLoading: isLoading,
@@ -24,7 +25,12 @@ export default function NewPassword() {
   console.log(data);
 
   useEffect(() => {
-    if (data != null) NotificationHandler(data.message, data.type);
+    if (data != null) {
+      NotificationHandler(data.message, data.type);
+      if (data.message == "User not found!") setUserNotFound(true);
+    } else {
+      setUserNotFound(false);
+    }
   }, [data]);
 
   const handleChange = () => (event) => {
@@ -62,18 +68,32 @@ export default function NewPassword() {
         <LoadingSpinner />
       ) : (
         <>
-          <h2>New Passwword</h2>
-          <div className={styles.form}>
-            <input
-              placeholder="Password"
-              type="text"
-              onChange={handleChange()}
-              value={password}
-            />
-            <button className={styles["submit-button"]} onClick={clickSubmit}>
-              SUBMIT
-            </button>
-          </div>
+          {userNotFound ? (
+            <>
+              <h2>User not Found</h2>
+              <div className={styles.form}>
+                <h3> You are not authintication to change the password</h3>
+              </div>
+            </>
+          ) : (
+            <>
+              <h2>New Passwword</h2>
+              <div className={styles.form}>
+                <input
+                  placeholder="Password"
+                  type="text"
+                  onChange={handleChange()}
+                  value={password}
+                />
+                <button
+                  className={styles["submit-button"]}
+                  onClick={clickSubmit}
+                >
+                  SUBMIT
+                </button>
+              </div>
+            </>
+          )}
         </>
       )}
     </div>
