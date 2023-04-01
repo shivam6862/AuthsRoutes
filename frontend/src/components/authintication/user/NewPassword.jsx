@@ -6,7 +6,9 @@ import { postResetPassword } from "./api-auth";
 import { useNotification } from "../../store/useNotification";
 import { useParams } from "react-router-dom";
 import { useProtectedResources } from "./useProtectedResources";
+
 import LoadingSpinner from "../../ui/LoadingSpinner";
+import UserNotAuth from "./UserNotAuth";
 
 export default function NewPassword() {
   const navigate = useNavigate();
@@ -69,12 +71,7 @@ export default function NewPassword() {
       ) : (
         <>
           {userNotFound ? (
-            <>
-              <h2>User not Found</h2>
-              <div className={styles.form}>
-                <h3> You are not authintication to change the password</h3>
-              </div>
-            </>
+            <UserNotAuth />
           ) : (
             <>
               <h2>New Passwword</h2>
