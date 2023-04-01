@@ -5,7 +5,6 @@ const config = require("../../config/config");
 
 const signin = async (req, res) => {
   try {
-    console.log("signing");
     const user = await User.findOne({
       email: req.body.email,
     });

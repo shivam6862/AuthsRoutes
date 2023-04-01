@@ -1,7 +1,4 @@
 const User = require("../models/user.model");
-const jwt = require("jsonwebtoken");
-const { expressjwt } = require("express-jwt");
-const config = require("../../config/config");
 
 const getNewPassword = (req, res, next) => {
   const token = req.params.token;

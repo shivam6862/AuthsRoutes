@@ -14,6 +14,10 @@ const auth = {
     if (typeof window !== "undefined") sessionStorage.removeItem("jwt");
     cb();
   },
+  userChangedData(cb) {
+    sessionStorage.removeItem("jwt");
+    cb();
+  },
 };
 
 export default auth;

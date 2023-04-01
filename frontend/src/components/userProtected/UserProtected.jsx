@@ -1,15 +1,14 @@
 import React, { useEffect } from "react";
 import { read } from "../authintication/user/api-user";
 import { useNotification } from "../store/useNotification";
+import { useNavigate } from "react-router-dom";
+import auth from "../authintication/auth/auth-helper";
 
 const UserProtected = () => {
   const token = JSON.parse(sessionStorage.getItem("jwt"));
-  console.log(token);
-  console.log(token["token"]);
-  console.log(token.user["_id"]);
 
   const { NotificationHandler } = useNotification();
-
+  const navigate = useNavigate();
   const signal = null;
   useEffect(() => {
     read(token.user["_id"], token["token"], signal).then((data) => {
@@ -18,7 +17,9 @@ const UserProtected = () => {
         return;
       }
       if (data.error) {
-        NotificationHandler("You are unauthinticated", "Error");
+        NotificationHandler(data.error, "Error");
+        auth.userChangedData();
+        navigate("/sign-in");
       } else {
         NotificationHandler("You are authinticated", "Success");
       }

@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 const config = require("../config/config");
 const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
+const { UnauthorizedError } = require("express-jwt");
 
 dotenv.config();
 
@@ -29,6 +30,14 @@ app.use("/", userRoutes);
 app.use("/", authRoutes);
 
 routes.forEach((route) => app[route.method](route.path, route.handler));
+
+app.use((err, req, res, next) => {
+  if (err instanceof UnauthorizedError) {
+    res.status(401).json({ error: "You are unauthinticated" });
+  } else {
+    next(err);
+  }
+});
 
 const start = async () => {
   await db.connect(process.env.MONGODB_URL);
